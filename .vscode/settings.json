@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/4a5cca2e-1a93-4c0b-b796-e852ccf1a342/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/seizure-tracker",
-    "appService.deploySubpath": "bin/Publish"
-}
