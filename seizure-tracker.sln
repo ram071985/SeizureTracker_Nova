@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seizure-tracker", "\SeizureTracker\seizure-tracker.csproj", "{DCF3DF4F-EB74-412F-BB65-2D0FB8F71EE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "\Tests\Tests.csproj", "{4245951C-767A-4CB9-A687-9C0C9D3F4CAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCF3DF4F-EB74-412F-BB65-2D0FB8F71EE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF3DF4F-EB74-412F-BB65-2D0FB8F71EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF3DF4F-EB74-412F-BB65-2D0FB8F71EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF3DF4F-EB74-412F-BB65-2D0FB8F71EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34CB4D46-8877-441A-9302-794FA923D20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34CB4D46-8877-441A-9302-794FA923D20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34CB4D46-8877-441A-9302-794FA923D20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34CB4D46-8877-441A-9302-794FA923D20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4245951C-767A-4CB9-A687-9C0C9D3F4CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4245951C-767A-4CB9-A687-9C0C9D3F4CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4245951C-767A-4CB9-A687-9C0C9D3F4CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4245951C-767A-4CB9-A687-9C0C9D3F4CAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BF76045-077E-412F-8D25-C69A6BD3C0CE}
+	EndGlobalSection
+EndGlobal

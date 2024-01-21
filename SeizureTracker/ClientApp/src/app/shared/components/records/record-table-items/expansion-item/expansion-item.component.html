@@ -1,0 +1,68 @@
+<span> # {{recordNumber + 1}}</span>
+<!-- <table>
+  <tr>
+    <th>Time</th>
+    <th>Strength</th>
+    <th>Seizure Type</th>
+    <th>Medication Change</th>
+    <th>M.C. Explanation</th>
+    <th>Ketones Level</th>
+    <th>Sleep Amount</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>{{item.timeOfSeizure + item.amPm}}</td>
+  </tr>
+  <tr>
+    <td>{{item.seizureStrength}}</td>
+  </tr>
+  <tr>
+    <td>{{item.seizureType}}</td>
+  </tr>
+  <tr>
+    <td>{{item.medicationChange}}</td>
+  </tr>
+  <tr>
+    <td>{{item.medicationChangeExplanation}}</td>
+  </tr>
+  <tr>
+    <td>{{item.ketonesLevel}}</td>
+  </tr>
+  <tr>
+    <td>{{item.sleepAmount}}</td>
+  </tr>
+</table>
+<hr class="w-100"/> -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <th mat-header-cell *matHeaderCellDef> Time </th>
+  <ng-container matColumnDef="timeOfSeizure">
+    <th mat-header-cell *matHeaderCellDef> Time </th>
+    <td mat-cell *matCellDef="let element"> {{element.timeOfSeizure}} </td>
+  </ng-container>
+  <ng-container matColumnDef="seizureStrength">
+    <th mat-header-cell *matHeaderCellDef> Seizure Strength </th>
+    <td mat-cell *matCellDef="let element"> {{element.seizureStrength}} </td>
+  </ng-container>
+    <ng-container matColumnDef="seizureType">
+      <th mat-header-cell *matHeaderCellDef> Seizure Type(s) </th>
+      <td mat-cell *matCellDef="let element"> {{element.seizureType}} </td>
+    </ng-container>
+  <ng-container matColumnDef="medicationChange">
+    <th mat-header-cell *matHeaderCellDef> Medication Change </th>
+    <td mat-cell *matCellDef="let element"> {{element.medicationChange}} </td>
+  </ng-container>
+  <ng-container matColumnDef="medicationChangeExplanation">
+    <th mat-header-cell *matHeaderCellDef> Med Expln. </th>
+    <td mat-cell *matCellDef="let element"> {{element.medicationChangeExplanation}} </td>
+  </ng-container>
+  <ng-container matColumnDef="ketonesLevel">
+      <th mat-header-cell *matHeaderCellDef> Ketones Level </th>
+      <td mat-cell *matCellDef="let element"> {{element.ketonesLevel}} </td>
+  </ng-container>
+  <ng-container matColumnDef="sleepAmount">
+      <th mat-header-cell *matHeaderCellDef> Sleep Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.sleepAmount}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

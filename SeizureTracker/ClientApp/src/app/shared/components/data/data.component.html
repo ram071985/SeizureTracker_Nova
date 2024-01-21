@@ -1,0 +1,10 @@
+<h1 class="text-center p-5">DATA</h1>
+<app-data-select-links [(dailySeizureCountMonths)]="graphComponent" [(dailySeizureCountCurrentYear)]="graphComponent"></app-data-select-links>
+<container-element [ngSwitch]="graphComponent">
+    <!-- <elementType1 *ngSwitchCase="totalSeizuresCurrentYear"><app-total-seizures-year></app-total-seizures-year>
+    </elementType1>
+    <elementType2 *ngSwitchCase="totalSeizuresByMonth"><app-total-seizures-month></app-total-seizures-month>
+    </elementType2>
+    <elementTypeDefault *ngSwitchDefault></elementTypeDefault> -->
+    <app-total-seizures-year></app-total-seizures-year>
+</container-element>

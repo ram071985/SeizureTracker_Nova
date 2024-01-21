@@ -1,0 +1,23 @@
+# compiled output TEST
+/ClientApp/dist
+/ClientApp/dist-server
+/ClientApp/tmp
+/ClientApp/out-tsc
+/ClientApp/.angular
+
+# dependencies
+/ClientApp/node_modules
+
+/ClientApp/.idea
+
+
+
+# misc
+/ClientApp/.sass-cache
+/ClientApp/connect.lock
+/ClientApp/coverage
+/ClientApp/libpeerconnection.log
+/ClientApp/npm-debug.logÍ
+/ClientApp/yarn-error.log
+/ClientApp/testem.log
+/ClientApp/typings

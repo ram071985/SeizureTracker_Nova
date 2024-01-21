@@ -1,0 +1,6 @@
+<container-element class="container-fluid justify-content-center align-items-center" [ngSwitch]="loading">
+    <elementType1 *ngSwitchCase="false"><canvas baseChart class="chart" [data]="lineChartData"
+            [type]="lineChartType"></canvas>
+    </elementType1>
+    <elementTypeDefault class="d-flex justify-content-center" *ngSwitchDefault><mat-spinner></mat-spinner></elementTypeDefault>
+</container-element>

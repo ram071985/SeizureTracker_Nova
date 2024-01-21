@@ -1,0 +1,15 @@
+<container-element class="container-fluid justify-content-center align-items-center" [ngSwitch]="loading">
+    <!-- <elementType1 *ngSwitchCase="false"><canvas baseChart class="chart" [data]="lineChartData"
+            [type]="lineChartType"></canvas>
+    </elementType1> -->
+    <elementType1 class="d-flex justify-content-center" *ngSwitchCase="false">
+        <ng-template ngFor let-year [ngForOf]="years" let i="index">
+            <button mat-stroked-button color="primary" class="m-2">{{year}}</button>
+        </ng-template>
+        <ng-template ngFor let-month [ngForOf]="months" let i="index">
+            <button mat-stroked-button color="primary" class="m-2">{{month}}</button>
+        </ng-template>
+    </elementType1>
+    <elementTypeDefault class="d-flex justify-content-center" *ngSwitchDefault><mat-spinner></mat-spinner>
+    </elementTypeDefault>
+</container-element>
