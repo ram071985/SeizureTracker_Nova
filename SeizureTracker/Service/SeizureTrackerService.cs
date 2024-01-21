@@ -76,7 +76,7 @@ public class SeizureTrackerService : ISeizureTrackerService
 
             if(yearFilter is not null || monthFilter is not null)
             {
-                seizureForm = parseRecords.Where(x => DateTime.Parse(x.Date).Year == yearFilter).GroupBy(r => DateTime.Parse(r.Date).Date).Select(g => g.ToList()).ToList();
+                seizureForm = parseRecords.Where(x => DateTime.Parse(x.CreatedDate).Year == yearFilter).GroupBy(r => DateTime.Parse(r.CreatedDate).Date).Select(g => g.ToList()).ToList();
 
                 var filtered = filterSeizureCount(seizureForm);
 
@@ -88,9 +88,9 @@ public class SeizureTrackerService : ISeizureTrackerService
             }
             else
             {
-                seizureForm = parseRecords.GroupBy(r => DateTime.Parse(r.Date).Date.Year).Select(g => g.ToList()).ToList();
+                seizureForm = parseRecords.GroupBy(r => DateTime.Parse(r.CreatedDate).Date.Year).Select(g => g.ToList()).ToList();
 
-                var getYears = seizureForm.Select(x => DateTime.Parse(x.FirstOrDefault().Date).Year).ToArray();
+                var getYears = seizureForm.Select(x => DateTime.Parse(x.FirstOrDefault().CreatedDate).Year).ToArray();
 
                 totalSeizuresMonthsReturn.Years = getYears;
             }
@@ -137,9 +137,9 @@ public class SeizureTrackerService : ISeizureTrackerService
     {
         try
         {
-            var record = form.MapDtoToAzureModel();
+            var record = form.MapSeiureLogDTOToEntityModel();
 
-            await addRecord(record);
+        //    await addRecord(record);
 
             return form;
         }
@@ -185,7 +185,7 @@ public class SeizureTrackerService : ISeizureTrackerService
         {
             var set = new TotalSeizureDataSet()
             {
-                Date = DateTime.Parse(date[0].Date).ToString("MMMM dd"),
+                Date = DateTime.Parse(date[0].CreatedDate).ToString("MMMM dd"),
                 Amount = date.Count
             };
 
@@ -235,7 +235,7 @@ public class SeizureTrackerService : ISeizureTrackerService
         SeizureFormReturn seizures = new();
         seizures.Seizures = new();
 
-        var groupByDate = records.GroupBy(r => r.Date).Select(g => g.ToList());
+        var groupByDate = records.GroupBy(r => r.CreatedDate).Select(g => g.ToList());
 
         var groups = groupByDate.ToList();
 

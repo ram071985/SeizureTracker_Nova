@@ -6,7 +6,7 @@ internal static class AzureModelToDto
     {
         return new()
         {
-            Date = form.Date,
+            CreatedDate = form.Date,
             TimeOfSeizure = form.TimeOfSeizure,
             SeizureStrength = form.SeizureStrength,
             SeizureType = form.SeizureType,

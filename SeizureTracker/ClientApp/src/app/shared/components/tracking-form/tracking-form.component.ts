@@ -118,8 +118,8 @@ export class TrackingFormComponent implements OnInit {
   onDateEntry(event: MatDatepickerInputEvent<Date>) {
     // change to switch statement?
     this.queryKetones().subscribe((res: MainForm) => {
-      if (res?.ketonesLevel == "0" || res?.ketonesLevel == null) {
-        this.form.value.ketonesLevel = "0";
+      if (res?.ketonesLevel == 0 || res?.ketonesLevel == null) {
+        this.form.value.ketonesLevel = 0;
       }
       else {
         this.form.value.ketonesLevel = res.ketonesLevel

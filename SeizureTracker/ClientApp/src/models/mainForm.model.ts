@@ -1,18 +1,16 @@
 
-
 export interface MainForm {
-    rowKey?: string,
-    partitionKey?: string,
-    date: string,
-    timeOfSeizure: string,
-    seizureStrength: any,
-    medicationChange: string,
-    medicationChangeExplanation: string,
-    ketonesLevel: any,
-    seizureType: string,
-    sleepAmount: any,
-    amPm: string,
-    notes: string,
+    id: number,
+    createdDate?: Date,
+    timeOfSeizure?: Date,
+    seizureStrength?: number,
+    ketonesLevel?: number,
+    seizureType?: string,
+    sleepAmount?: number,
+    notes?: string,
+    medicationChange?: boolean,
+    medicationChangeExplanation?: string,
+    amPm?: string,
     pageCount?: number,
     pageNumber?: number
 }

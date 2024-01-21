@@ -77,7 +77,7 @@ public class SeizureTrackerController : ControllerBase
     }
 
     [HttpPost("check_ketones")]
-    public async Task<SeizureFormDto> CheckKetonesLevels([FromBody] string date)
+    public async Task<SeizureFormDto> GetKetoneLevels([FromBody] string date)
     {
         try
         {
@@ -94,7 +94,7 @@ public class SeizureTrackerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<SeizureFormDto> CreateMainFormRecord([FromBody] SeizureFormDto form)
+    public async Task<SeizureFormDto> AddSeizureLog([FromBody] SeizureFormDto form)
     {
         try
         {

@@ -2,24 +2,22 @@ using System.Globalization;
 
 namespace seizure_tracker.Service.Mappings;
 
-internal static class DtoToAzureModel
+internal static class DtoToEntityModel
 {
-    internal static SeizureForm MapDtoToAzureModel(this SeizureFormDto form)
+    internal static Seizures MapSeiureLogDTOToEntityModel(this SeizureFormDto form)
     {
         return new()
         {
-            PartitionKey = form.SeizureType,
-            RowKey = Guid.NewGuid().ToString(),
-            Date = form.Date,
-            TimeOfSeizure = form.TimeOfSeizure,
+            CreatedDate = DateTime.Parse(form.CreatedDate),
+            TimeOfSeizure = DateTime.Parse(form.TimeOfSeizure),
+            AmPm = form.AmPm,
             SeizureStrength = form.SeizureStrength,
             SeizureType = form.SeizureType,
-            MedicationChange = form.MedicationChange,
+            MedicationChange = form.MedicationChange == "TRUE" ? true : form.MedicationChange == "NA" ? false : false,
             MedicationChangeExplanation = form.MedicationChangeExplanation,
             KetonesLevel = !String.IsNullOrEmpty(form.KetonesLevel) ? float.Parse(form.KetonesLevel, CultureInfo.InvariantCulture.NumberFormat) : 0.0f,
             SleepAmount = form.SleepAmount,
-            Notes = form.Notes,
-            AmPm = form.AmPm
+            Notes = form.Notes, 
         };
     }
 }
