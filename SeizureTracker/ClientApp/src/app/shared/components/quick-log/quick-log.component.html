@@ -1,0 +1,17 @@
+<div class="app-container bg-black container-fluid h-100">
+    <h1 class="text-center text-light p-3">Quick Log</h1>
+    <div class="container-fluid d-flex justify-content-center">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-center w-100 my-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Notes...</mat-label>
+                    <textarea name="notes" formControlName="notes" matInput></textarea>
+                </mat-form-field>
+            </div>
+            <div class="">
+                <button type="submit" class="my-4" mat-raised-button color="warn">LOG SEIZURE</button>
+            </div>
+        </form>
+    </div>
+
+</div>

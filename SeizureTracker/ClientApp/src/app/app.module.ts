@@ -26,6 +26,8 @@ import { DataSelectLinks } from './shared/components/data/data-select-links/data
 import { TotalSeizuresYear } from './shared/components/data/total-seizures-year/total-seizures-year.component';
 import { TotalSeizuresMonth } from './shared/components/data/total-seizures-month/total-seizures-month.component';
 import { NgChartsModule } from 'ng2-charts';
+import { QuickLogComponent } from './shared/components/quick-log/quick-log.component';
+import { Q } from '@angular/cdk/keycodes';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { NgChartsModule } from 'ng2-charts';
     DataComponent,
     DataSelectLinks,
     TotalSeizuresYear,
-    TotalSeizuresMonth
+    TotalSeizuresMonth,
+    QuickLogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,7 +58,8 @@ import { NgChartsModule } from 'ng2-charts';
     RouterModule.forRoot([
       { path: '', component: MainComponent },
       { path: 'records', component: RecordsComponent },
-      { path: 'data', component: DataComponent }
+      { path: 'data', component: DataComponent },
+      { path: 'quick-log', component: QuickLogComponent }
     ]),
     BrowserAnimationsModule,
     NgMaterialModule,

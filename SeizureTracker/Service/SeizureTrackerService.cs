@@ -74,26 +74,26 @@ public class SeizureTrackerService : ISeizureTrackerService
         {
             var parseRecords = await mapRecords();
 
-            if(yearFilter is not null || monthFilter is not null)
-            {
-                seizureForm = parseRecords.Where(x => DateTime.Parse(x.CreatedDate).Year == yearFilter).GroupBy(r => DateTime.Parse(r.CreatedDate).Date).Select(g => g.ToList()).ToList();
+            // if (yearFilter is not null || monthFilter is not null)
+            // {
+            //     seizureForm = parseRecords.Where(x => x.CreatedDate == yearFilter).GroupBy(r => DateTime.Parse(r.CreatedDate).Date).Select(g => g.ToList()).ToList();
 
-                var filtered = filterSeizureCount(seizureForm);
+            //     var filtered = filterSeizureCount(seizureForm);
 
-                var months = filtered.GroupBy(m => DateTime.Parse(m.Date).Month).Select(x => x.ToList()).ToList();
+            //     var months = filtered.GroupBy(m => DateTime.Parse(m.Date).Month).Select(x => x.ToList()).ToList();
 
-                totalSeizuresMonthsReturn.Months = months.Select(x => DateTime.Parse(x.FirstOrDefault().Date).Month).ToArray();
+            //     totalSeizuresMonthsReturn.Months = months.Select(x => DateTime.Parse(x.FirstOrDefault().Date).Month).ToArray();
 
-                totalSeizuresMonthsReturn.DataSet = months.FirstOrDefault(x => DateTime.Parse(x.FirstOrDefault().Date).Month == monthFilter).Select(y => y).ToArray();
-            }
-            else
-            {
-                seizureForm = parseRecords.GroupBy(r => DateTime.Parse(r.CreatedDate).Date.Year).Select(g => g.ToList()).ToList();
+            //     totalSeizuresMonthsReturn.DataSet = months.FirstOrDefault(x => DateTime.Parse(x.FirstOrDefault().Date).Month == monthFilter).Select(y => y).ToArray();
+            // }
+            // else
+            // {
+            //     seizureForm = parseRecords.GroupBy(r => DateTime.Parse(r.CreatedDate).Date.Year).Select(g => g.ToList()).ToList();
 
-                var getYears = seizureForm.Select(x => DateTime.Parse(x.FirstOrDefault().CreatedDate).Year).ToArray();
+            //     var getYears = seizureForm.Select(x => DateTime.Parse(x.FirstOrDefault().CreatedDate).Year).ToArray();
 
-                totalSeizuresMonthsReturn.Years = getYears;
-            }
+            //     totalSeizuresMonthsReturn.Years = getYears;
+            // }
 
             // var filterMonths = totalSeizureSet.Where(x => DateTime.Parse(x.Date).Year == date).ToList();
             return totalSeizuresMonthsReturn;
@@ -133,15 +133,15 @@ public class SeizureTrackerService : ISeizureTrackerService
         }
     }
 
-    public async Task<SeizureFormDto> AddRecord(SeizureFormDto form)
+    public async Task AddRecord(SeizureFormDto form)
     {
         try
         {
-            var record = form.MapSeiureLogDTOToEntityModel();
+            var mappedLog = form.MapSeiureLogDTOToEntityModel();
 
-        //    await addRecord(record);
+            await _context.Seizures.AddAsync(mappedLog);
 
-            return form;
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
@@ -185,7 +185,7 @@ public class SeizureTrackerService : ISeizureTrackerService
         {
             var set = new TotalSeizureDataSet()
             {
-                Date = DateTime.Parse(date[0].CreatedDate).ToString("MMMM dd"),
+                Date = date[0].CreatedDate?.ToString("MMMM dd"),
                 Amount = date.Count
             };
 
@@ -222,7 +222,7 @@ public class SeizureTrackerService : ISeizureTrackerService
 
             if (!records.Any())
                 return seizures;
-            return records.Select(r => r.MapToSeizureFormDto()).ToList();         
+            return records.Select(r => r.MapToSeizureFormDto()).ToList();
         }
         catch (Exception ex)
         {

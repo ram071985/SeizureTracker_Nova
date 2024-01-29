@@ -94,13 +94,11 @@ public class SeizureTrackerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<SeizureFormDto> AddSeizureLog([FromBody] SeizureFormDto form)
+    public async Task AddSeizureLog([FromBody] SeizureFormDto form)
     {
         try
         {
-            var record = await _seizureTrackerService.AddRecord(form);
-
-            return record;
+            await _seizureTrackerService.AddRecord(form);
         }
         catch (Exception ex)
         {

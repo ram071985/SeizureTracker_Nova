@@ -77,7 +77,7 @@ export class TrackingFormComponent implements OnInit {
 
   createSeizureForm() {
     this.form = this.builder.group({
-      date: new FormControl([Validators.required]),
+      createdDate: new FormControl([Validators.required]),
       timeOfSeizure: new FormControl("", this.regExValidator(this.timeRegEx)),
       seizureStrength: new FormControl(0, this.regExValidator(this.strengthRegEx)),
       medicationChange: "",
@@ -86,11 +86,12 @@ export class TrackingFormComponent implements OnInit {
       seizureType: new FormControl("", [Validators.required]),
       sleepAmount: new FormControl(0, this.regExValidator(this.strengthRegEx)),
       amPM: new FormControl("", [Validators.required]),
-      notes: ""
+      notes: "",
+      
     })
   }
 
-  get date() { return this.form.get('date') };
+  get createdDate() { return this.form.get('createdDate') };
   get timeOfSeizure() { return this.form.get('timeOfSeizure') };
   get seizureStrength() { return this.form.get('seizureStrength') };
   get seizureType() { return this.form.get('seizureType') };

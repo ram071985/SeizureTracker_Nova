@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<SeizureContext>(options =>
 {    
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings:DB"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
 });
 
 builder.Services.AddScoped<IAzureTableService, AzureTableService>();

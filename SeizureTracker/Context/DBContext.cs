@@ -11,6 +11,7 @@ public class SeizureContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("SeizureTracker");
-        modelBuilder.Entity<Seizures>().ToView("LogsByDate");
+        modelBuilder.Entity<Seizures>().ToTable("Logs");
+        modelBuilder.Entity<SeizuresView>().ToView("LogsByDate");
     }
 }
