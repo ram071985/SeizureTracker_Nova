@@ -133,15 +133,17 @@ public class SeizureTrackerService : ISeizureTrackerService
         }
     }
 
-    public async Task AddRecord(SeizureFormDto form)
+    public async Task<SeizureFormDto> AddRecord(SeizureFormDto form)
     {
         try
         {
-            var mappedLog = form.MapSeiureLogDTOToEntityModel();
+            var log = form.MapSeiureLogDTOToEntityModel();
 
-            await _context.Seizures.AddAsync(mappedLog);
+            await _context.Seizures.AddAsync(log);
 
             await _context.SaveChangesAsync();
+
+            return log.MapSeiureLogEntityToDTO();
         }
         catch (Exception ex)
         {

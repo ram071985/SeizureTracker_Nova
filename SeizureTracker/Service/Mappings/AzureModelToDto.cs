@@ -13,7 +13,24 @@ internal static class AzureModelToDto
             KetonesLevel = form.KetonesLevel.ToString("0.0"),
             SleepAmount = form.SleepAmount,
             Notes = form.Notes,
-            AmPm = form.AmPm
+            AmPm = form.AmPm,        
+        };
+    }
+
+    internal static SeizureFormDto MapSeiureLogEntityToDTO(this Seizures form)
+    {
+        return new()
+        {
+            CreatedDate = form.CreatedDate,
+            TimeOfSeizure = form.TimeOfSeizure,
+            AmPm = form.AmPm,
+            SeizureStrength = form.SeizureStrength,
+            SeizureType = form.SeizureType,
+            MedicationChange = form.MedicationChange == true ? "TRUE" : "NA",
+            MedicationChangeExplanation = form.MedicationChangeExplanation,
+            KetonesLevel = !String.IsNullOrEmpty(form.KetonesLevel.ToString()) ? form.KetonesLevel.ToString() : "0.0",
+            SleepAmount = form.SleepAmount,
+            Notes = form.Notes,
         };
     }
 }

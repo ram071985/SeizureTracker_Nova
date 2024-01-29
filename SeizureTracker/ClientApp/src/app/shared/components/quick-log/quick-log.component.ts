@@ -34,11 +34,13 @@ export class QuickLogComponent {
   };
 
   get notes() { return this.form.get('notes') };
+  get seizureType() { return this.form.get('seizureType') };
 
   createSeizureForm() {
     this.form = this.builder.group({
       createdDate: new Date,
       notes: "",
+      seizureType: "QuickLog"
     })
   }
 
