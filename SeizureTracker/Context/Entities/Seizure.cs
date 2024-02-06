@@ -1,5 +1,5 @@
 
-public partial class Seizures
+public partial class Seizure
 {
     public int ID { get; set; }
     public DateTime? CreatedDate { get; set; }

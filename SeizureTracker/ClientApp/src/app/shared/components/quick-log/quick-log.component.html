@@ -2,16 +2,17 @@
     <h1 class="text-center text-light p-3">Quick Log</h1>
     <div class="container-fluid d-flex justify-content-center">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="d-flex justify-content-center w-100 my-4">
-                <mat-form-field appearance="fill">
+            <div class="my-2">
+                <mat-form-field class="w-100" appearance="fill">
                     <mat-label>Notes...</mat-label>
                     <textarea name="notes" formControlName="notes" matInput></textarea>
                 </mat-form-field>
             </div>
-            <div class="">
+            <div>
                 <button type="submit" class="my-4" mat-raised-button color="warn">LOG SEIZURE</button>
             </div>
         </form>
+        <mat-spinner mode="indeterminate" *ngIf="submitting" class="m-auto"></mat-spinner>
     </div>
 
 </div>

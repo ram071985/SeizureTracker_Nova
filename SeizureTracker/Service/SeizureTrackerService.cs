@@ -36,7 +36,7 @@ public class SeizureTrackerService : ISeizureTrackerService
         }
     }
 
-    public async Task<List<Seizures>> GetTotalSeizuresRecords()
+    public async Task<List<Seizure>> GetTotalSeizuresRecords()
     {
         List<TotalSeizureDataSet> totalSeizureSet = new();
 
@@ -106,7 +106,7 @@ public class SeizureTrackerService : ISeizureTrackerService
         }
     }
 
-    public async Task<SeizureFormDto> CheckForKetones(string date)
+    public async Task<SeizureFormDto> CheckForKetones(DateTime date)
     {
         SeizureFormDto seizure = new();
 
@@ -251,6 +251,7 @@ public class SeizureTrackerService : ISeizureTrackerService
 
         return seizures;
     }
+    private async Task<List<Seizure>> getSeizureLogsByDate(DateTime date) => await 
     private async Task<List<SeizureForm>> getRecords(string queryFilter) => await _azureTableService.GetRecords(queryFilter);
     private async Task<List<SeizureForm>> getDateRecords(string date) => await _azureTableService.GetRecordsByDate(date);
     private async Task<SeizureForm> addRecord(SeizureForm form) => await _azureTableService.AddRecord(form);

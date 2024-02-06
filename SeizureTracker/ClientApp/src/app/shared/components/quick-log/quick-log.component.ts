@@ -23,6 +23,9 @@ export class QuickLogComponent {
   form: FormGroup;
   message: string = "";
   endpoint = '';
+  submitted: boolean = false;
+  submitting: boolean = false;
+
   constructor(private httpClient: HttpClient, private builder: FormBuilder, private snackBar: MatSnackBar) {
     this.createSeizureForm();
   }
@@ -45,10 +48,15 @@ export class QuickLogComponent {
   }
 
   onSubmit() {
+    if (this.submitted)
+      return;
+    this.submitted = true;
+    this.submitting = true;
     this.addSeizure().subscribe((res: {}) => {
       this.message = res != null ? 'Success! Hang in there sweetheart.. I love you.' : 'Something Went Wrong';
       this.snackBar.open(this.message, "CLOSE")
       this.form.reset();
+      this.submitting = false;
     });
   }
 
