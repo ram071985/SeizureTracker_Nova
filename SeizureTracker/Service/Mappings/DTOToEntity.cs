@@ -4,7 +4,7 @@ namespace seizure_tracker.Service.Mappings;
 
 internal static class DTOToEntity
 {
-    internal static Seizures MapSeiureLogDTOToEntityModel(this SeizureFormDto form)
+    internal static Seizure MapSeiureLogDTOToEntityModel(this SeizureFormDto form)
     {
         return new()
         {

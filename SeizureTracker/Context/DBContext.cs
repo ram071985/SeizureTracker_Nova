@@ -15,13 +15,31 @@ public class SeizureContext : DbContext
         modelBuilder.Entity<SeizuresView>().ToView("LogsByDate");
     }
 
-    public async Task GetSeizureLogsByDate(DateTime date)
+   // public async GetSei
+
+    public async Task<List<Seizure>> GetSeizureLogsByDate(DateTime date)
     {
         try
         {
-            return Seizures.Where;
+            return await Seizures.Where(x => x.CreatedDate == date).ToListAsync();
         }
         catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+
+            throw;
+        }
+    }
+
+    public async Task AddSeizureLog(Seizure log)
+    {
+        try
+        {
+            await Seizures.AddAsync(log);
+
+            await SaveChangesAsync();
+        }
+        catch(Exception ex)
         {
             Console.WriteLine(ex.Message);
 

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging.EventLog;
 using seizure_tracker.Service.Mappings;
 namespace seizure_tracker.Service;
 
@@ -114,12 +115,12 @@ public class SeizureTrackerService : ISeizureTrackerService
 
         try
         {
-            var records = await getDateRecords(date);
+            var records = await getSeizureLogsByDate(date);
 
             if (!records.Any())
                 return seizure;
 
-            var parseRecords = records.Select(r => r.MapToSeizureFormDto()).ToList();
+            var parseRecords = records.Select(r => r.MapSeizureLogEntityToDTO()).ToList();
 
             seizure = parseRecords.OrderByDescending(x => double.Parse(x.KetonesLevel)).FirstOrDefault();
 
@@ -139,15 +140,14 @@ public class SeizureTrackerService : ISeizureTrackerService
         {
             var log = form.MapSeiureLogDTOToEntityModel();
 
-            await _context.Seizures.AddAsync(log);
+            await addSeizureLog(log);
 
-            await _context.SaveChangesAsync();
-
-            return log.MapSeiureLogEntityToDTO();
+            return log.MapSeizureLogEntityToDTO();
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+
             throw;
         }
     }
@@ -251,7 +251,8 @@ public class SeizureTrackerService : ISeizureTrackerService
 
         return seizures;
     }
-    private async Task<List<Seizure>> getSeizureLogsByDate(DateTime date) => await 
+    private async Task addSeizureLog(Seizure log) => await _context.AddSeizureLog(log);
+    private async Task<List<Seizure>> getSeizureLogsByDate(DateTime date) => await _context.GetSeizureLogsByDate(date);
     private async Task<List<SeizureForm>> getRecords(string queryFilter) => await _azureTableService.GetRecords(queryFilter);
     private async Task<List<SeizureForm>> getDateRecords(string date) => await _azureTableService.GetRecordsByDate(date);
     private async Task<SeizureForm> addRecord(SeizureForm form) => await _azureTableService.AddRecord(form);
