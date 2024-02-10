@@ -21,7 +21,7 @@ public class SeizureContext : DbContext
     {
         try
         {
-            return await Seizures.Where(x => x.CreatedDate == date).ToListAsync();
+            return await Seizures.Where(x => x.CreatedDate.Value.Date == date.Date).ToListAsync();
         }
         catch (Exception ex)
         {

@@ -6,6 +6,8 @@ internal static class DTOToEntity
 {
     internal static Seizure MapSeiureLogDTOToEntityModel(this SeizureFormDto form)
     {
+        decimal check;
+        Decimal.TryParse(form.KetonesLevel, out check);
         return new()
         {
             CreatedDate = form.CreatedDate,
@@ -15,7 +17,7 @@ internal static class DTOToEntity
             SeizureType = form.SeizureType,
             MedicationChange = form.MedicationChange == "TRUE" ? true : form.MedicationChange == "NA" ? false : false,
             MedicationChangeExplanation = form.MedicationChangeExplanation,
-            KetonesLevel = !String.IsNullOrEmpty(form.KetonesLevel) ? float.Parse(form.KetonesLevel, CultureInfo.InvariantCulture.NumberFormat) : 0.0f,
+            KetonesLevel = !String.IsNullOrEmpty(form.KetonesLevel) ?  check : 0,
             SleepAmount = form.SleepAmount,
             Notes = form.Notes,
         };

@@ -30,7 +30,22 @@ public class Tests
         {
             var seizureLogs = await _context.Seizures.ToListAsync();
 
-            Assert.IsInstanceOf<List<Seizures>>(seizureLogs);
+            Assert.IsInstanceOf<List<Seizure>>(seizureLogs);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    [Test]
+    public async Task CheckForKetonesTest()
+    {
+        try
+        {
+            var seizureLog = await _seizureTrackerService.CheckForKetones(new DateTime(2024,2,9));
+
+            Assert.IsInstanceOf<Seizure>(seizureLog);
         }
         catch (Exception ex)
         {

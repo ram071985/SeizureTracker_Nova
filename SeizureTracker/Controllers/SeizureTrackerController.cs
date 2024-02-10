@@ -76,31 +76,31 @@ public class SeizureTrackerController : ControllerBase
 
     }
 
-    // [HttpPost("check_ketones")]
-    // public async Task<SeizureFormDto> GetKetoneLevels([FromBody] string date)
-    // {
-    //     try
-    //     {
-    //         var record = await _seizureTrackerService.CheckForKetones(date);
+    [HttpPost("check_ketones")]
+    public async Task<SeizureFormDto> GetKetoneLevels([FromBody] string date)
+    {
+        try
+        {
+            var record = await _seizureTrackerService.CheckForKetones(DateTime.Parse(date));
 
-    //         return record;
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         Console.WriteLine(ex.Message);
+            return record;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
 
-    //         throw;
-    //     }
-    // }
+            throw;
+        }
+    }
 
     [HttpPost]
     public async Task<SeizureFormDto> AddSeizureLog([FromBody] SeizureFormDto form)
     {
         try
         {
-           var log =  await _seizureTrackerService.AddRecord(form);
+            var log = await _seizureTrackerService.AddRecord(form);
 
-           return log;
+            return log;
         }
         catch (Exception ex)
         {

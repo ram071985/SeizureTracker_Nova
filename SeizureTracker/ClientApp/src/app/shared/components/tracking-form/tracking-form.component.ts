@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, inject, OnChanges, SimpleChanges } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { Observable, throwError } from 'rxjs';
 import { MainForm } from 'src/models/mainForm.model';
@@ -24,7 +24,7 @@ export enum MedicationChange {
   templateUrl: './tracking-form.component.html',
   styleUrls: ['./tracking-form.component.scss']
 })
-export class TrackingFormComponent implements OnInit {
+export class TrackingFormComponent implements OnInit, OnChanges {
   form: FormGroup;
   mainForm: MainForm;
   message: string = "";
@@ -46,6 +46,7 @@ export class TrackingFormComponent implements OnInit {
   announcer = inject(LiveAnnouncer);
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredSeizureTypes: Observable<string[]>;
+  seizureTypeChosen: boolean = false;
   submitted: boolean = false;
   submitting: boolean = false;
 
@@ -56,7 +57,6 @@ export class TrackingFormComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private builder: FormBuilder, private snackBar: MatSnackBar) {
     this.createSeizureForm();
-
     this.filteredSeizureTypes = this.seizureType.valueChanges.pipe(
       startWith(null),
       map((seizure: string | null) => (seizure ? this.filterSeizureTypes(seizure) : this.seizureTypesInput.slice())),
@@ -70,7 +70,12 @@ export class TrackingFormComponent implements OnInit {
   };
 
   ngOnInit() {
+
   }
+ ngOnChanges(changes: SimpleChanges) {
+
+ }
+  
 
 
   changeAmPm() {
@@ -87,10 +92,10 @@ export class TrackingFormComponent implements OnInit {
       medicationChange: "",
       medicationChangeExplanation: "",
       ketonesLevel: new FormControl("0", this.regExValidator(this.decimalRegEx)),
-      seizureType: new FormControl("", [Validators.required]),
+      seizureType: new FormControl(""),
       sleepAmount: new FormControl(0, this.regExValidator(this.strengthRegEx)),
       amPM: new FormControl("", [Validators.required]),
-      notes: "",
+      // notes: "",
     })
   }
 
@@ -182,7 +187,7 @@ export class TrackingFormComponent implements OnInit {
 
     event.chipInput!.clear();
 
-    this.seizureType.setValue(null);
+  //  this.seizureType.setValue(null);
   }
 
   selectedSeizureType(event: MatAutocompleteSelectedEvent): void {

@@ -31,45 +31,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <!-- <mat-label>Seizure Type</mat-label>
-    <div class="row">
-      <ul class="type-checkbox flex-row">
-        <li *ngFor="let type of seizureTypesInput">
-          <mat-checkbox [value]="type.completed" name="seizureType" formControlName="seizureType" name="seizureType">
-            {{ type.name }}
-          </mat-checkbox>
-        </li>
-      </ul>
-    </div> -->
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Seizure Type</mat-label>
-        <mat-select name="seizureType" formControlName="seizureType">
-          <mat-option *ngFor="let type of seizureTypesInput" [value]="type">
-            {{ type }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
-      <!-- <mat-form-field class="example-chip-list">
-        <mat-label>Favorite Fruits</mat-label>
-        <mat-chip-grid #chipGrid aria-label="Fruit selection">
-          @for (fruit of fruits; track fruit) {
-          <mat-chip-row (removed)="remove(fruit)">
-            {{fruit}}
-            <button matChipRemove [attr.aria-label]="'remove ' + fruit">
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-          }
-        </mat-chip-grid>
-        <input placeholder="New Fruit..." #fruitInput [formControl]="fruitCtrl" [matChipInputFor]="chipGrid"
-          [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="add($event)" />
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          @for (fruit of filteredFruits | async; track fruit) {
-          <mat-option [value]="fruit">{{fruit}}</mat-option>
-          }
-        </mat-autocomplete>
-      </mat-form-field> -->
       <mat-form-field>
         <mat-label>Seizure Type(s)</mat-label>
         <mat-chip-grid #chipGrid aria-label="Seizure type(s)">
@@ -80,8 +41,8 @@
             </button>
           </mat-chip-row>
         </mat-chip-grid>
-        <input placeholder="Seizure type..." #seizureTypeInput [formControl]="seizureType" [matChipInputFor]="chipGrid"
-          [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        <input placeholder="Seizure type..." #seizureTypeInput formControlName="seizureType"
+          [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           (matChipInputTokenEnd)="addSeizureType($event)" />
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedSeizureType($event)">
           <mat-option *ngFor="let seizure of filteredSeizureTypes | async" [value]="seizure">
@@ -118,7 +79,8 @@
         <mat-label>Notes...</mat-label>
         <textarea name="notes" formControlName="notes" matInput></textarea>
       </mat-form-field>
-      <button type="submit" class="my-3 w-100" mat-raised-button color="primary" [disabled]="form.invalid">
+      <button type="submit" class="my-3 w-100" mat-raised-button color="primary"
+        [disabled]="!form.valid && seizureTypeSelections.length == 0">
         SUBMIT
       </button>
     </div>
