@@ -1,4 +1,4 @@
-<div class="app-container bg-black mat-app-background container-fluid h-100">
+<div class="app-container bg-black mat-app-background container-fluid py-5">
   <h1 class="text-center text-light p-5">Track Seizure</h1>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="container-fluid d-flex flex-column justify-content-center col-sm-12 col-xl-5">
@@ -79,8 +79,8 @@
         <mat-label>Notes...</mat-label>
         <textarea name="notes" formControlName="notes" matInput></textarea>
       </mat-form-field>
-      <button type="submit" class="my-3 w-100" mat-raised-button color="primary"
-        [disabled]="!form.valid && seizureTypeSelections.length == 0">
+      <button type="submit" class="my-5 w-100" mat-raised-button color="primary"
+        [disabled]="form.invalid || seizureTypeSelections.length == 0">
         SUBMIT
       </button>
     </div>

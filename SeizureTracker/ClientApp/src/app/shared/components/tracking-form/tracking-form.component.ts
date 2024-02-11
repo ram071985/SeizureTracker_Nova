@@ -92,10 +92,10 @@ export class TrackingFormComponent implements OnInit, OnChanges {
       medicationChange: "",
       medicationChangeExplanation: "",
       ketonesLevel: new FormControl("0", this.regExValidator(this.decimalRegEx)),
-      seizureType: new FormControl(""),
+      seizureType: "",
       sleepAmount: new FormControl(0, this.regExValidator(this.strengthRegEx)),
       amPM: new FormControl("", [Validators.required]),
-      // notes: "",
+      notes: "",
     })
   }
 
