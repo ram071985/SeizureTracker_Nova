@@ -1,6 +1,6 @@
 public class SeizureFormDto
 {
-    public int ID { get; set; }
+    public int? ID { get; set; }
     public string? CreatedDate { get; set; }
     public string? TimeOfSeizure { get; set; }
     public string? AmPm { get; set; }
