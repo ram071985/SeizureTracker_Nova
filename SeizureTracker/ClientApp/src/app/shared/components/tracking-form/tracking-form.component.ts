@@ -53,6 +53,7 @@ export class TrackingFormComponent implements OnInit, OnChanges {
   @Input() toggled: "";
   @Output() toggledChange: EventEmitter<string> = new EventEmitter<string>();
   @ViewChild('seizureTypeInput') seizureTypeInput: ElementRef<HTMLInputElement>;
+  @ViewChild('f') logForm;
 
 
   constructor(private httpClient: HttpClient, private builder: FormBuilder, private snackBar: MatSnackBar) {
@@ -89,13 +90,13 @@ export class TrackingFormComponent implements OnInit, OnChanges {
       createdDate: new FormControl([Validators.required]),
       timeOfSeizure: new FormControl("", this.regExValidator(this.timeRegEx)),
       seizureStrength: new FormControl(0, this.regExValidator(this.strengthRegEx)),
-      medicationChange: "",
-      medicationChangeExplanation: "",
+      medicationChange: new FormControl(""),
+      medicationChangeExplanation: new FormControl(""),
       ketonesLevel: new FormControl("0", this.regExValidator(this.decimalRegEx)),
-      seizureType: "",
+      seizureType: new FormControl(""),
       sleepAmount: new FormControl(0, this.regExValidator(this.strengthRegEx)),
       amPM: new FormControl("", [Validators.required]),
-      notes: "",
+      notes: new FormControl(""),
     })
   }
 
@@ -123,8 +124,10 @@ export class TrackingFormComponent implements OnInit, OnChanges {
     this.addSeizure().subscribe((res: {}) => {
       this.message = res != null ? 'Success! Hang in there sweetheart.. I love you.' : 'Something Went Wrong';
       this.snackBar.open(this.message, "CLOSE")
-      this.form.reset();
+      this.logForm.resetForm();
       this.submitting = false;
+      this.submitted = false;
+      this.seizureTypeSelections = [];
     });
   }
 

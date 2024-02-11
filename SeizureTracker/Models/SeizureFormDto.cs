@@ -1,8 +1,8 @@
 public class SeizureFormDto
 {
     public int ID { get; set; }
-    public DateTime? CreatedDate { get; init; } = default!;
-    public DateTime? TimeOfSeizure { get; init; }
+    public string? CreatedDate { get; set; }
+    public string? TimeOfSeizure { get; set; }
     public string? AmPm { get; set; }
     public int? SeizureStrength { get; init; }
     public string? KetonesLevel { get; set; }

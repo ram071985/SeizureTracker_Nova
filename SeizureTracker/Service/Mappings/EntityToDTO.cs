@@ -8,9 +8,9 @@ internal static class MapSeiureLogEntityToDTO
         return new()
         {
             ID = source.ID,
-            CreatedDate = source.CreatedDate,
-            TimeOfSeizure = source.TimeOfSeizure,
-            //AmPm = source.AmPm,
+            CreatedDate = source.CreatedDate.ToString(),
+            TimeOfSeizure = source.TimeOfSeizure.ToString(),
+            AmPm = source.AmPm,
             SeizureStrength = source.SeizureStrength,
             KetonesLevel = source.KetonesLevel.ToString(),
             SeizureType = source.SeizureType,

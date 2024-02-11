@@ -1,6 +1,6 @@
 <div class="app-container bg-black mat-app-background container-fluid py-5">
   <h1 class="text-center text-light p-5">Track Seizure</h1>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
     <div class="container-fluid d-flex flex-column justify-content-center col-sm-12 col-xl-5">
       <mat-form-field appearance="fill">
         <mat-label>Choose a date</mat-label>

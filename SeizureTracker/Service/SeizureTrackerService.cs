@@ -136,9 +136,16 @@ public class SeizureTrackerService : ISeizureTrackerService
 
     public async Task<SeizureFormDto> AddRecord(SeizureFormDto form)
     {
+        DateTime.TryParse(form.CreatedDate, out DateTime createdDate);
+
+        DateTime? timeOfSeizure = null;
+
         try
         {
-            var log = form.MapSeiureLogDTOToEntityModel();
+            if (form.TimeOfSeizure is not null)
+                timeOfSeizure = createdDate + createTimeOfSeizureTimeStamp(form);
+
+            var log = form.MapSeiureLogDTOToEntityModel(createdDate, timeOfSeizure);
 
             await addSeizureLog(log);
 
@@ -153,6 +160,70 @@ public class SeizureTrackerService : ISeizureTrackerService
     }
     #endregion
     #region Private Methods
+    private int convertToAMMilitary(string hour)
+    {
+        return hour switch
+        {
+            "1" => 01,
+            "2" => 02,
+            "3" => 03,
+            "4" => 04,
+            "5" => 05,
+            "6" => 06,
+            "7" => 07,
+            "8" => 08,
+            "9" => 09,
+            "10" => 10,
+            "11" => 11,
+            "12" => 0,
+            _ => 0
+        };
+    }
+    private int convertToPMMilitary(string hour)
+    {
+        return hour switch
+        {
+            "1" => 13,
+            "2" => 14,
+            "3" => 15,
+            "4" => 16,
+            "5" => 17,
+            "6" => 18,
+            "7" => 19,
+            "8" => 20,
+            "9" => 21,
+            "10" => 22,
+            "11" => 23,
+            "12" => 24,
+            _ => 0
+        };
+    }
+    private TimeSpan? createTimeOfSeizureTimeStamp(SeizureFormDto form)
+    {
+        int hour;
+        int minuteNumber;
+        TimeSpan time;
+        char[] minute;
+        bool isAM = form.AmPm == "AM";
+
+        if (form.TimeOfSeizure.Length < 5)
+        {
+            hour = isAM ? convertToAMMilitary(form.TimeOfSeizure[0].ToString()) : convertToPMMilitary(form.TimeOfSeizure[0].ToString());
+            minute = new char[] { form.TimeOfSeizure[2], form.TimeOfSeizure[3] };
+        }
+        else
+        {
+            char[] militaryHourChars = { form.TimeOfSeizure[0], form.TimeOfSeizure[1] };
+            hour = isAM ? convertToAMMilitary(new string(militaryHourChars)) : convertToPMMilitary(new string(militaryHourChars));
+            minute = new char[] { form.TimeOfSeizure[3], form.TimeOfSeizure[4] };
+        }
+        minuteNumber = int.Parse(new string(minute));
+        time = new TimeSpan(hour, minuteNumber, 0);
+
+        return time;
+    }
+
+
     private IEnumerable<DateTime> eachDay(DateTime from, DateTime thru)
     {
         for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
@@ -187,7 +258,7 @@ public class SeizureTrackerService : ISeizureTrackerService
         {
             var set = new TotalSeizureDataSet()
             {
-                Date = date[0].CreatedDate?.ToString("MMMM dd"),
+                //      Date = date[0].CreatedDate?.ToString("MMMM dd"),
                 Amount = date.Count
             };
 
