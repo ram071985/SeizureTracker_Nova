@@ -136,7 +136,7 @@ export class TrackingFormComponent implements OnInit, OnChanges {
     console.log(event.target.value, "date entry");
     this.queryKetones().subscribe((res: MainForm) => {
       if (res?.ketonesLevel == 0 || res?.ketonesLevel == null) {
-        this.form.value.ketonesLevel = 0;
+        this.form.value.ketonesLevel = "0";
       }
       else {
         this.form.value.ketonesLevel = res.ketonesLevel
