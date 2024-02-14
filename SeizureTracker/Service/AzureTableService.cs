@@ -38,7 +38,7 @@ public class AzureTableService : IAzureTableService
                 seizureRecords.Add(entity);
             }
 
-            seizureRecords = seizureRecords.OrderByDescending(x => DateTime.Parse(x.Date)).ThenByDescending(x => DateTime.Parse(x.TimeOfSeizure)).ToList();
+           
 
             return seizureRecords;
         }

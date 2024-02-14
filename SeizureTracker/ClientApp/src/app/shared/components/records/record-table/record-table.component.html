@@ -15,7 +15,7 @@
     >
       <mat-expansion-panel-header class="d-flex">
         <span class="d-flex justify-content-end">{{
-          this.datePipe.transform(record[0].date, "M/d/yy")
+          record[0].createdDate
         }}</span>
       </mat-expansion-panel-header>
       <mat-panel-description>
@@ -24,7 +24,7 @@
           [recordNumber]="i"
           [item]="item"e
         ></app-expansion-item> -->
-          <ng-container matColumnDef="time">
+          <ng-container matColumnDef="timeOfSeizure">
             <th mat-header-cell *matHeaderCellDef> Time </th>
             <td mat-cell *matCellDef="let element"> {{element.timeOfSeizure}} </td>
           </ng-container>

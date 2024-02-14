@@ -77,8 +77,6 @@ export class TrackingFormComponent implements OnInit, OnChanges {
 
  }
   
-
-
   changeAmPm() {
     this.toggled = this.toggled;
     this.toggledChange.emit(this.toggled);

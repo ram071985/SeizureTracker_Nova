@@ -23,7 +23,7 @@ export interface PeriodicElement {
 })
 
 export class RecordTableComponent implements OnInit {
-    displayedColumns: string[] = ['time', 'seizureStrength', 'medicationChange', 'medicationChangeExplanation', 'ketonesLevel', 'seizureType', 'sleepAmount', 'notes'];
+    displayedColumns: string[] = ['timeOfSeizure', 'seizureStrength', 'medicationChange', 'medicationChangeExplanation', 'ketonesLevel', 'seizureType', 'sleepAmount', 'notes'];
     endpoint = '';
     seizureRecords: MainForm[];
     page: number = 1;

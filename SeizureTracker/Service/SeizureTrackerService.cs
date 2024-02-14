@@ -291,11 +291,11 @@ public class SeizureTrackerService : ISeizureTrackerService
 
         try
         {
-            var records = await getRecords(filter);
+            var records = await getSeizureView();
 
             if (!records.Any())
                 return seizures;
-            return records.Select(r => r.MapToSeizureFormDto()).ToList();
+            return records.Select(r => r.MapSeizureLogViewEntityToDTO()).ToList();
         }
         catch (Exception ex)
         {
@@ -324,6 +324,7 @@ public class SeizureTrackerService : ISeizureTrackerService
     }
     private async Task addSeizureLog(Seizure log) => await _context.AddSeizureLog(log);
     private async Task<List<Seizure>> getSeizureLogsByDate(DateTime date) => await _context.GetSeizureLogsByDate(date);
+    private async Task<List<SeizuresView>> getSeizureView() => await _context.GetSeizureView();
     private async Task<List<SeizureForm>> getRecords(string queryFilter) => await _azureTableService.GetRecords(queryFilter);
     private async Task<List<SeizureForm>> getDateRecords(string date) => await _azureTableService.GetRecordsByDate(date);
     private async Task<SeizureForm> addRecord(SeizureForm form) => await _azureTableService.AddRecord(form);
