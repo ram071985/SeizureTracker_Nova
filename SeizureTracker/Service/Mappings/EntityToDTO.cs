@@ -28,8 +28,8 @@ internal static class MapSeiureLogEntityToDTO
         return new()
         {
             ID = source.ID,
-            CreatedDate = DateTime.ParseExact(source.CreatedDate.ToString(), "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy"),
-            TimeOfSeizure = source.TimeOfSeizure.ToString(),
+            CreatedDate = source.CreatedDate.GetValueOrDefault().ToString("MM/dd/yy"),
+            TimeOfSeizure = source.TimeOfSeizure.GetValueOrDefault().ToString("hh:mm tt"),
             AmPm = source.AmPm,
             SeizureStrength = source.SeizureStrength,
             KetonesLevel = source.KetonesLevel.ToString(),

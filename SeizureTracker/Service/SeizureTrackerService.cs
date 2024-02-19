@@ -295,7 +295,7 @@ public class SeizureTrackerService : ISeizureTrackerService
 
             if (!records.Any())
                 return seizures;
-            return records.Select(r => r.MapSeizureLogViewEntityToDTO()).ToList();
+            return records.OrderByDescending(x => x.CreatedDate).Select(r => r.MapSeizureLogViewEntityToDTO()).ToList();
         }
         catch (Exception ex)
         {
