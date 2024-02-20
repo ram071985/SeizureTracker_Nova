@@ -10,8 +10,8 @@ internal static class MapSeiureLogEntityToDTO
         return new()
         {
             ID = source.ID,
-            CreatedDate = source.CreatedDate.ToString(),
-            TimeOfSeizure = source.TimeOfSeizure.ToString(),
+            CreatedDate = source.CreatedDate.GetValueOrDefault().ToLocalTime().ToString(),
+            TimeOfSeizure = source.TimeOfSeizure.GetValueOrDefault().ToLocalTime().ToString(),
             AmPm = source.AmPm,
             SeizureStrength = source.SeizureStrength,
             KetonesLevel = source.KetonesLevel.ToString(),
@@ -28,8 +28,8 @@ internal static class MapSeiureLogEntityToDTO
         return new()
         {
             ID = source.ID,
-            CreatedDate = source.CreatedDate.GetValueOrDefault().ToString("MM/dd/yy"),
-            TimeOfSeizure = source.TimeOfSeizure.GetValueOrDefault().ToString("hh:mm"),
+            CreatedDate = source.CreatedDate.GetValueOrDefault().ToLocalTime().ToString("MM/dd/yy"),
+            TimeOfSeizure = source.TimeOfSeizure.GetValueOrDefault().ToLocalTime().ToString("hh:mm"),
             AmPm = source.AmPm,
             SeizureStrength = source.SeizureStrength,
             KetonesLevel = source.KetonesLevel.ToString(),
