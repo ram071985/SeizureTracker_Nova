@@ -29,7 +29,7 @@ export class TrackingFormComponent implements OnInit, OnChanges {
   mainForm: MainForm;
   message: string = "";
   endpoint = '';
-  timeRegEx: RegExp = new RegExp('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$');
+  timeRegEx: RegExp = new RegExp('^([0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
   strengthRegEx: RegExp = new RegExp('^[1-9][0-9]*$');
   decimalRegEx: RegExp = new RegExp('[0-4]');
   time: string = '';

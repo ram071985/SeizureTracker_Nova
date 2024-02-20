@@ -26,7 +26,7 @@
         ></app-expansion-item> -->
           <ng-container matColumnDef="timeOfSeizure">
             <th mat-header-cell *matHeaderCellDef> Time </th>
-            <td mat-cell *matCellDef="let element"> {{element.timeOfSeizure}} </td>
+            <td mat-cell *matCellDef="let element"> {{ element.timeOfSeizure + element.amPm }} </td>
           </ng-container>
           <ng-container matColumnDef="seizureStrength">
             <th mat-header-cell *matHeaderCellDef> Strength </th>

@@ -29,7 +29,7 @@ internal static class MapSeiureLogEntityToDTO
         {
             ID = source.ID,
             CreatedDate = source.CreatedDate.GetValueOrDefault().ToString("MM/dd/yy"),
-            TimeOfSeizure = source.TimeOfSeizure.GetValueOrDefault().ToString("hh:mm tt"),
+            TimeOfSeizure = source.TimeOfSeizure.GetValueOrDefault().ToString("hh:mm"),
             AmPm = source.AmPm,
             SeizureStrength = source.SeizureStrength,
             KetonesLevel = source.KetonesLevel.ToString(),
