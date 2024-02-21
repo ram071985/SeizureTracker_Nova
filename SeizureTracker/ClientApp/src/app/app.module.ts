@@ -28,6 +28,8 @@ import { TotalSeizuresMonth } from './shared/components/data/total-seizures-mont
 import { NgChartsModule } from 'ng2-charts';
 import { QuickLogComponent } from './shared/components/quick-log/quick-log.component';
 import { Q } from '@angular/cdk/keycodes';
+import { ModalComponent } from './shared/components/modal/modal.component';
+import { EditLogComponent } from './shared/components/edit-log/edit-log.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { Q } from '@angular/cdk/keycodes';
     DataSelectLinks,
     TotalSeizuresYear,
     TotalSeizuresMonth,
-    QuickLogComponent
+    QuickLogComponent,
+    ModalComponent,
+    EditLogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
